@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>springMVCMybatis</display-name>
+  
+  <!-- 配置spring容器监听器 -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/classes/spring/applicationContext-*.xml</param-value>
+	</context-param>
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+  
+  <!-- 前端控制器 开始 -->
+	<servlet>
+		<servlet-name>springmvc</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+
+		<!-- 加载springmvc 配置 ,如果不配置的话， spring框架会在项目中着默认的配置文件，默认配置文件的位置是classpath下的，命名规则为 
+			servlet名字+"-servlet"的文件，以现在的情况应该就是springmvc-servlet ,自己配置的好处，主要是好管理 -->
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:spring/springmvc.xml</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>springmvc</servlet-name>
+		<!-- 可以配置/ ：所有请求都由springmvc解析 
+			  可以配置*.do 或者 *.action :当url的扩展名是以 *.do 或者 *.action 结尾时，由springmvc解析 
+			  不可以配置/*，如果这样返回jsp时也会由springmvc解析，这是不对的 -->
+		<url-pattern>*.action</url-pattern>
+	</servlet-mapping>
+
+	<!-- 前端控制器 结束 -->
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>
